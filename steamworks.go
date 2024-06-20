@@ -7,6 +7,8 @@ package steamworks
 
 type AppId_t uint32
 type CSteamID uint64
+type HAuthTicket uint32
+
 type InputHandle_t uint64
 
 type ESteamAPIInitResult int32
@@ -121,16 +123,17 @@ const (
 	flatAPI_ISteamRemoteStorage_FileDelete  = "SteamAPI_ISteamRemoteStorage_FileDelete"
 	flatAPI_ISteamRemoteStorage_GetFileSize = "SteamAPI_ISteamRemoteStorage_GetFileSize"
 
-	flatAPI_SteamUser             = "SteamAPI_SteamUser_v023"
-	flatAPI_ISteamUser_GetSteamID = "SteamAPI_ISteamUser_GetSteamID"
+	flatAPI_SteamUser                         = "SteamAPI_SteamUser_v023"
+	flatAPI_ISteamUser_GetSteamID             = "SteamAPI_ISteamUser_GetSteamID"
+	flatAPI_ISteamUser_CancelAuthTicket       = "SteamAPI_ISteamUser_CancelAuthTicket"
+	flatAPI_ISteamUser_GetAuthTicketForWebApi = "SteamAPI_ISteamUser_GetAuthTicketForWebApi"
 
-	flatAPI_SteamUserStats                      = "SteamAPI_SteamUserStats_v012"
-	flatAPI_ISteamUserStats_RequestCurrentStats = "SteamAPI_ISteamUserStats_RequestCurrentStats"
-	flatAPI_ISteamUserStats_GetAchievement      = "SteamAPI_ISteamUserStats_GetAchievement"
-	flatAPI_ISteamUserStats_SetAchievement      = "SteamAPI_ISteamUserStats_SetAchievement"
-	flatAPI_ISteamUserStats_ClearAchievement    = "SteamAPI_ISteamUserStats_ClearAchievement"
-	flatAPI_ISteamUserStats_StoreStats          = "SteamAPI_ISteamUserStats_StoreStats"
-
+	flatAPI_SteamUserStats                           = "SteamAPI_SteamUserStats_v012"
+	flatAPI_ISteamUserStats_RequestCurrentStats      = "SteamAPI_ISteamUserStats_RequestCurrentStats"
+	flatAPI_ISteamUserStats_GetAchievement           = "SteamAPI_ISteamUserStats_GetAchievement"
+	flatAPI_ISteamUserStats_SetAchievement           = "SteamAPI_ISteamUserStats_SetAchievement"
+	flatAPI_ISteamUserStats_ClearAchievement         = "SteamAPI_ISteamUserStats_ClearAchievement"
+	flatAPI_ISteamUserStats_StoreStats               = "SteamAPI_ISteamUserStats_StoreStats"
 	flatAPI_SteamUtils                               = "SteamAPI_SteamUtils_v010"
 	flatAPI_ISteamUtils_IsSteamRunningOnSteamDeck    = "SteamAPI_ISteamUtils_IsSteamRunningOnSteamDeck"
 	flatAPI_ISteamUtils_ShowFloatingGamepadTextInput = "SteamAPI_ISteamUtils_ShowFloatingGamepadTextInput"

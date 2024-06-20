@@ -6,6 +6,7 @@ package steamworks
 import (
 	"fmt"
 	"runtime"
+	"syscall"
 	"unsafe"
 
 	"golang.org/x/sys/windows"
@@ -289,6 +290,22 @@ func (s steamUser) GetSteamID() CSteamID {
 		panic(err)
 	}
 	return CSteamID(v)
+}
+
+func (s steamUser) CancelAuthTicket(hAuthTicket HAuthTicket) {
+	_, err := theDLL.call(flatAPI_ISteamUser_CancelAuthTicket, uintptr(s), uintptr(hAuthTicket))
+	if err != nil {
+		panic(err)
+	}
+}
+
+func (s steamUser) GetAuthTicketForWebApi(pchIdentity string) HAuthTicket {
+	pchIdentityPtr, _ := syscall.UTF16PtrFromString(pchIdentity)
+	v, err := theDLL.call(flatAPI_ISteamUser_GetAuthTicketForWebApi, uintptr(s), uintptr(unsafe.Pointer(pchIdentityPtr)))
+	if err != nil {
+		panic(err)
+	}
+	return HAuthTicket(v)
 }
 
 func SteamUserStats() ISteamUserStats {

@@ -453,6 +453,23 @@ func (s steamUser) GetSteamID() CSteamID {
 	return CSteamID(v)
 }
 
+func (s steamUser) CancelAuthTicket(hAuthTicket HAuthTicket) {
+	_, err := theLib.call(funcType_Void_Ptr_Int, flatAPI_ISteamUser_CancelAuthTicket, uintptr(s), uintptr(hAuthTicket))
+	if err != nil {
+		panic(err)
+	}
+}
+
+func (s steamUser) GetAuthTicketForWebApi(pchIdentity string) HAuthTicket {
+	pchIdentityPtr := C.CString(pchIdentity)
+	defer C.free(unsafe.Pointer(pchIdentityPtr))
+	v, err := theLib.call(funcType_Int64_Ptr_Str, flatAPI_ISteamUser_GetAuthTicketForWebApi, uintptr(s), uintptr(unsafe.Pointer(pchIdentityPtr)))
+	if err != nil {
+		panic(err)
+	}
+	return HAuthTicket(v)
+}
+
 func SteamUserStats() ISteamUserStats {
 	v, err := theLib.call(funcType_Ptr, flatAPI_SteamUserStats)
 	if err != nil {
